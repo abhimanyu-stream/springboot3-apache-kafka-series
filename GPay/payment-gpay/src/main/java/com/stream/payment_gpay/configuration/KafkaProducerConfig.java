@@ -74,11 +74,11 @@ public class KafkaProducerConfig {
         return kafkaTemplate;
     }
 
-    @Bean("KafkaTransactionManager")
-    public KafkaTransactionManager<String, PayRequest> kafkaTransactionManager(ProducerFactory<String, PayRequest> producerFactory) {
+    @Bean("kafkaTransactionManagerPayRequest")
+    public KafkaTransactionManager<String, PayRequest> kafkaTransactionManagerPayRequest(ProducerFactory<String, PayRequest> producerFactory) {
         return new KafkaTransactionManager<>(producerFactory);
     }
-    @Bean("KafkaTransactionManager")
+    @Bean("kafkaTransactionManagerMoneyTransferEvent")
     public KafkaTransactionManager<String, MoneyTransferEvent> kafkaTransactionManagerMoneyTransferEvent(ProducerFactory<String, MoneyTransferEvent> producerFactoryMoneyTransferEvent) {
         return new KafkaTransactionManager<>(producerFactoryMoneyTransferEvent);
     }

@@ -92,6 +92,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>3.5.1</version>
+		</dependency>
 
 	</dependencies>
 	<dependencyManagement>
@@ -114,13 +120,29 @@
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>3.5.0</version>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>17</source>
+						<target>17</target>
+					</configuration>
 				</plugin>
-				<!-- To use the plugin goals in your POM or parent POM -->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${project.parent.version}</version>
+					<configuration>
+						<excludes>
+							<exclude>
+								<groupId>org.project-lombok</groupId>
+								<artifactId>lombok</artifactId>
+							</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.5.1</version>
 				</plugin>
 				<plugin>
 					<groupId>org.owasp</groupId>
@@ -134,19 +156,7 @@
 						</execution>
 					</executions>
 				</plugin>
-				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-					<version>${project.parent.version}</version>
-					<configuration>
-						<excludes>
-							<exclude>
-								<groupId>org.projectlombok</groupId>
-								<artifactId>lombok</artifactId>
-							</exclude>
-						</excludes>
-					</configuration>
-				</plugin>
+
 			</plugins>
 		</pluginManagement>
 

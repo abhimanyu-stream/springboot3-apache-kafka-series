@@ -22,7 +22,7 @@ public class PaymentRequestController {
 
     @Qualifier("KafkaTemplate")
     private final KafkaTemplate<String, PayRequest> kafkaTemplate;
-    @Qualifier("KafkaTransactionManager")
+    @Qualifier("kafkaTransactionManagerPayRequest")
     private final KafkaTransactionManager<String, PayRequest> kafkaTransactionManager;
 
 
